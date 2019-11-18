@@ -37,35 +37,56 @@ class AppleTest {
     @Test
     void should_get_heavy_apples() {
         List<Apple> heavyApples = filterHeavyApples(inventory);
-    
+        
         assertEquals(7, heavyApples.size());
     }
     
     @Test
     void should_get_green_apples_by_passing_function() {
         List<Apple> greenApples = filterApples(inventory, Apple::isGreen);
-    
+        
         assertEquals(9, greenApples.size());
     }
     
     @Test
     void should_get_heavy_apples_by_passing_function() {
         List<Apple> heavyApples = filterApples(inventory, Apple::isHeavy);
-    
+        
         assertEquals(7, heavyApples.size());
     }
     
     @Test
-    void should_get_all_apples_which_color_is_green() {
-        List<Apple> greenApples = inventory.stream().filter((Apple a) -> a.getColor().equals("green")).collect(toList());
+    void should_get_green_apples_by_lambda() {
+        List<Apple> greenApples = filterApples(inventory, (Apple a) -> "green".equals(a.getColor()));
         
         assertEquals(9, greenApples.size());
     }
     
+    @Test
+    void should_get_heavy_apples_by_lambda() {
+        List<Apple> heavyApples = filterApples(inventory, (Apple a) -> a.getWeight() > 100);
+        
+        assertEquals(7, heavyApples.size());
+    }
+    
+    @Test
+    void should_get_green_apples_by_stream() {
+        List<Apple> greenApples =
+            inventory.stream().filter((Apple a) -> a.getColor().equals("green")).collect(toList());
+        
+        assertEquals(9, greenApples.size());
+    }
+    
+    @Test
+    void should_get_heavy_apples_by_stream() {
+        List<Apple> heavyApples = inventory.stream().filter((Apple a) -> a.getWeight() > 100).collect(toList());
+    
+        assertEquals(7, heavyApples.size());
+    }
+    
     private static List<Apple> filterGreenApples(List<Apple> inventory) {
         List<Apple> result = new ArrayList<>();
-        for (Apple apple :
-            inventory) {
+        for (Apple apple : inventory) {
             if (apple.getColor().equals("green")) {
                 result.add(apple);
             }
@@ -75,8 +96,7 @@ class AppleTest {
     
     private List<Apple> filterHeavyApples(List<Apple> inventory) {
         List<Apple> result = new ArrayList<>();
-        for (Apple apple :
-            inventory) {
+        for (Apple apple : inventory) {
             if (apple.getWeight() > 100) {
                 result.add(apple);
             }
@@ -86,8 +106,7 @@ class AppleTest {
     
     private List<Apple> filterApples(List<Apple> inventory, Predicate<Apple> predicate) {
         List<Apple> result = new ArrayList<>();
-        for (Apple apple :
-            inventory) {
+        for (Apple apple : inventory) {
             if (predicate.test(apple)) {
                 result.add(apple);
             }
