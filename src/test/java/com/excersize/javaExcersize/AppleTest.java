@@ -29,15 +29,27 @@ class AppleTest {
     
     @Test
     void should_get_green_apples() {
-//        List<Apple> greenApples = filterGreenApples(inventory);
-        List<Apple> greenApples = filterApples(inventory, Apple::isGreen);
+        List<Apple> greenApples = filterGreenApples(inventory);
         
         assertEquals(9, greenApples.size());
     }
     
     @Test
     void should_get_heavy_apples() {
-//        List<Apple> heavyApples = filterHeavyApples(inventory);
+        List<Apple> heavyApples = filterHeavyApples(inventory);
+    
+        assertEquals(7, heavyApples.size());
+    }
+    
+    @Test
+    void should_get_green_apples_by_passing_function() {
+        List<Apple> greenApples = filterApples(inventory, Apple::isGreen);
+    
+        assertEquals(9, greenApples.size());
+    }
+    
+    @Test
+    void should_get_heavy_apples_by_passing_function() {
         List<Apple> heavyApples = filterApples(inventory, Apple::isHeavy);
     
         assertEquals(7, heavyApples.size());
