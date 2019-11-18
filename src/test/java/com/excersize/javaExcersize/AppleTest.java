@@ -79,7 +79,8 @@ class AppleTest {
     
     @Test
     void should_get_heavy_apples_by_stream() {
-        List<Apple> heavyApples = inventory.stream().filter((Apple a) -> a.getWeight() > 100).collect(toList());
+        List<Apple> heavyApples =
+            inventory.parallelStream().filter((Apple a) -> a.getWeight() > 100).collect(toList());
     
         assertEquals(7, heavyApples.size());
     }
