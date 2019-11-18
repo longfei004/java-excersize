@@ -1,0 +1,66 @@
+[
+  {
+    "color": "green",
+    "weight": 70
+  },
+  {
+    "color": "red",
+    "weight": 120
+  },
+  {
+    "color": "red",
+    "weight": 110
+  },
+  {
+    "color": "red",
+    "weight": 90
+  },
+  {
+    "color": "green",
+    "weight": 100
+  },
+  {
+    "color": "green",
+    "weight": 130
+  },
+  {
+    "color": "red",
+    "weight": 70
+  },
+  {
+    "color": "green",
+    "weight": 90
+  },
+  {
+    "color": "green",
+    "weight": 70
+  },
+  {
+    "color": "red",
+    "weight": 110
+  },
+  {
+    "color": "green",
+    "weight": 120
+  },
+  {
+    "color": "green",
+    "weight": 80
+  },
+  {
+    "color": "red",
+    "weight": 100
+  },
+  {
+    "color": "green",
+    "weight": 90
+  },
+  {
+    "color": "red",
+    "weight": 110
+  },
+  {
+    "color": "green",
+    "weight": 110
+  }
+]
