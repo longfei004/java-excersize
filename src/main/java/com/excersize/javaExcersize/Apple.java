@@ -4,15 +4,7 @@ public class Apple {
     
     private String color;
     
-    private int weight;
-    
-    public Apple() {
-    }
-    
-    public Apple(String color, int weight) {
-        this.color = color;
-        this.weight = weight;
-    }
+    private Integer weight;
     
     public String getColor() {
         return color;
@@ -22,7 +14,7 @@ public class Apple {
         this.color = color;
     }
     
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
     

@@ -8,11 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AppleTest {
     
@@ -70,6 +72,29 @@ class AppleTest {
     }
     
     @Test
+    void should_sort_apples_by_weight_with_comparator() {
+        inventory.sort(new Comparator<Apple>() {
+            @Override
+            public int compare(Apple a1, Apple a2) {
+                return a1.getWeight().compareTo(a2.getWeight());
+            }
+        });
+        
+        for (int i = 1; i < inventory.size(); i++) {
+            assertTrue(inventory.get(i).getWeight() >= inventory.get(i - 1).getWeight());
+        }
+    }
+    
+    @Test
+    void should_sort_apples_by_weight_with_lambda() {
+        inventory.sort((a1, a2)->a2.getWeight().compareTo(a1.getWeight()));
+    
+        for (int i = 1; i < inventory.size(); i++) {
+            assertTrue(inventory.get(i).getWeight() <= inventory.get(i - 1).getWeight());
+        }
+    }
+    
+    @Test
     void should_get_green_apples_by_stream() {
         List<Apple> greenApples =
             inventory.stream().filter((Apple a) -> a.getColor().equals("green")).collect(toList());
@@ -81,7 +106,7 @@ class AppleTest {
     void should_get_heavy_apples_by_stream() {
         List<Apple> heavyApples =
             inventory.parallelStream().filter((Apple a) -> a.getWeight() > 100).collect(toList());
-    
+        
         assertEquals(7, heavyApples.size());
     }
     
