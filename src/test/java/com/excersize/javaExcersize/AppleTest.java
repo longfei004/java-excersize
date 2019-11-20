@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -89,6 +90,24 @@ class AppleTest {
     void should_sort_apples_by_weight_with_lambda() {
         inventory.sort((a1, a2)->a2.getWeight().compareTo(a1.getWeight()));
     
+        for (int i = 1; i < inventory.size(); i++) {
+            assertTrue(inventory.get(i).getWeight() <= inventory.get(i - 1).getWeight());
+        }
+    }
+    
+    @Test
+    void should_sort_apples_by_weight_with_method_reference() {
+        inventory.sort(comparing(Apple::getWeight));
+    
+        for (int i = 1; i < inventory.size(); i++) {
+            assertTrue(inventory.get(i).getWeight() >= inventory.get(i - 1).getWeight());
+        }
+    }
+    
+    @Test
+    void should_sort_apples_by_weight_with_method_reference_desc() {
+        inventory.sort(comparing(Apple::getWeight).reversed());
+        
         for (int i = 1; i < inventory.size(); i++) {
             assertTrue(inventory.get(i).getWeight() <= inventory.get(i - 1).getWeight());
         }

@@ -34,17 +34,17 @@ class FileProcessTest {
         assertEquals("This is first line,", value);
     }
     
-    private String myProcessFile(BufferedReaderProcessor p) throws IOException {
-        File file = new ClassPathResource("test_data.txt").getFile();
-        BufferedReader br = Files.newBufferedReader(file.toPath());
-        
-        return p.process(br);
-    }
-    
     private String processFile() throws IOException {
         File file = new ClassPathResource("test_data.txt").getFile();
         BufferedReader br = Files.newBufferedReader(file.toPath());
         
         return br.readLine();
+    }
+    
+    private String myProcessFile(BufferedReaderProcessor p) throws IOException {
+        File file = new ClassPathResource("test_data.txt").getFile();
+        BufferedReader br = Files.newBufferedReader(file.toPath());
+        
+        return p.process(br);
     }
 }
