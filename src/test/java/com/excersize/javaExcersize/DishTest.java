@@ -7,14 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 class DishTest {
     
@@ -34,7 +32,7 @@ class DishTest {
         List<String> meat_menu = menu.stream()
             .filter(dish -> dish.getType() == Dish.Type.MEAT)
             .map(Dish::getName)
-            .collect(Collectors.toList());
+            .collect(toList());
     
         assertEquals("[pork, beef, chicken]", meat_menu.toString());
     }
@@ -50,8 +48,23 @@ class DishTest {
             .map(word -> word.split(""))
             .flatMap(Arrays::stream)
             .distinct()
-            .collect(Collectors.toList());
+            .collect(toList());
     
         assertEquals("[h, e, l, o, w, r, d]", uniqueCharacters.toString());
+    }
+    
+    @Test
+    void should_get_all_pairs_of_two_list() {
+        List<Integer> num1 = Arrays.asList(1, 2, 3);
+        List<Integer> num2 = Arrays.asList(3, 4);
+    
+        List<String> pairs = num1.stream()
+            .flatMap(i -> num2.stream()
+                .map(j -> new int[]{i, j})
+            )
+            .map(Arrays::toString)
+            .collect(toList());
+    
+        assertEquals("[[1, 3], [1, 4], [2, 3], [2, 4], [3, 3], [3, 4]]", pairs.toString());
     }
 }
