@@ -7,31 +7,51 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DishTest {
+class DishTest {
     
-    private List<Dish> dishes;
+    private List<Dish> menu;
     
     @BeforeEach
     void setUp() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-    
-        dishes = mapper.readValue(FileUtils.loadTestSuiteResource("create_dish_list.json"),
+        
+        menu = mapper.readValue(FileUtils.loadTestSuiteResource("create_dish_list.json"),
             new TypeReference<List<Dish>>() {
             });
     }
     
     @Test
-    void should_get_all_meat() {
-        List<Dish> meatDish = dishes.stream().filter(dish -> dish.getType() == Dish.Type.MEAT).collect(Collectors.toList());
+    void should_get_all_meat_dish() {
+        List<String> meat_menu = menu.stream()
+            .filter(dish -> dish.getType() == Dish.Type.MEAT)
+            .map(Dish::getName)
+            .collect(Collectors.toList());
     
-        for (Dish dish:meatDish) {
-            assertSame(dish.getType(), Dish.Type.MEAT);
-        }
+        assertEquals("[pork, beef, chicken]", meat_menu.toString());
+    }
+    
+    
+    @Test
+    void should_get_unique_characters_form_word_list() {
+        List<String> words = new ArrayList<>();
+        words.add("hello");
+        words.add("world");
+    
+        List<String> uniqueCharacters = words.stream()
+            .map(word -> word.split(""))
+            .flatMap(Arrays::stream)
+            .distinct()
+            .collect(Collectors.toList());
+    
+        assertEquals("[h, e, l, o, w, r, d]", uniqueCharacters.toString());
     }
 }
