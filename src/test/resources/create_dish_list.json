@@ -1,0 +1,56 @@
+[
+  {
+    "name": "pork",
+    "vegetarian": false,
+    "calories": 800,
+    "type": 0
+  },
+  {
+    "name": "beef",
+    "vegetarian": false,
+    "calories": 700,
+    "type": 0
+  },
+  {
+    "name": "chicken",
+    "vegetarian": false,
+    "calories": 400,
+    "type": 0
+  },
+  {
+    "name": "french fries",
+    "vegetarian": true,
+    "calories": 530,
+    "type": 2
+  },
+  {
+    "name": "rice",
+    "vegetarian": true,
+    "calories": 350,
+    "type": 2
+  },
+  {
+    "name": "season fruit",
+    "vegetarian": true,
+    "calories": 120,
+    "type": 2
+  },
+  {
+    "name": "pizza",
+    "vegetarian": true,
+    "calories": 550,
+    "type": 2
+  },
+  {
+    "name": "prawns",
+    "vegetarian": false,
+    "calories": 300,
+    "type": 1
+  },
+  {
+    "name": "salmon",
+    "vegetarian": false,
+    "calories": 450,
+    "type": 1
+  }
+]
