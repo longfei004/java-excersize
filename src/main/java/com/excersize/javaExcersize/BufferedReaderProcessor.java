@@ -1,4 +1,4 @@
-package com.excersize.javaExcersize.utils;
+package com.excersize.javaExcersize;
 
 import java.io.BufferedReader;
 import java.io.IOException;
