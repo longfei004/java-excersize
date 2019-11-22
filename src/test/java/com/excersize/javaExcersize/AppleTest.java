@@ -88,8 +88,8 @@ class AppleTest {
     
     @Test
     void should_sort_apples_by_weight_with_lambda() {
-        inventory.sort((a1, a2)->a2.getWeight().compareTo(a1.getWeight()));
-    
+        inventory.sort((a1, a2) -> a2.getWeight().compareTo(a1.getWeight()));
+        
         for (int i = 1; i < inventory.size(); i++) {
             assertTrue(inventory.get(i).getWeight() <= inventory.get(i - 1).getWeight());
         }
@@ -98,7 +98,7 @@ class AppleTest {
     @Test
     void should_sort_apples_by_weight_with_method_reference() {
         inventory.sort(comparing(Apple::getWeight));
-    
+        
         for (int i = 1; i < inventory.size(); i++) {
             assertTrue(inventory.get(i).getWeight() >= inventory.get(i - 1).getWeight());
         }
@@ -116,7 +116,9 @@ class AppleTest {
     @Test
     void should_get_green_apples_by_stream() {
         List<Apple> greenApples =
-            inventory.stream().filter((Apple a) -> a.getColor().equals("green")).collect(toList());
+            inventory.stream()
+                .filter((Apple a) -> a.getColor().equals("green"))
+                .collect(toList());
         
         assertEquals(9, greenApples.size());
     }
@@ -124,7 +126,9 @@ class AppleTest {
     @Test
     void should_get_heavy_apples_by_stream() {
         List<Apple> heavyApples =
-            inventory.parallelStream().filter((Apple a) -> a.getWeight() > 100).collect(toList());
+            inventory.parallelStream()
+                .filter((Apple a) -> a.getWeight() > 100)
+                .collect(toList());
         
         assertEquals(7, heavyApples.size());
     }

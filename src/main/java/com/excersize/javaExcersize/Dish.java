@@ -12,13 +12,6 @@ public class Dish {
     public Dish() {
     }
     
-    public Dish(String name, boolean vegetarian, int calories, Type type) {
-        this.name = name;
-        this.vegetarian = vegetarian;
-        this.calories = calories;
-        this.type = type;
-    }
-    
     public String getName() {
         return name;
     }
@@ -33,22 +26,6 @@ public class Dish {
     
     public Type getType() {
         return type;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public void setVegetarian(boolean vegetarian) {
-        this.vegetarian = vegetarian;
-    }
-    
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
-    
-    public void setType(Type type) {
-        this.type = type;
     }
     
     @Override

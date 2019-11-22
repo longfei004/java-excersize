@@ -10,16 +10,8 @@ public class Apple {
         return color;
     }
     
-    public void setColor(String color) {
-        this.color = color;
-    }
-    
     public Integer getWeight() {
         return weight;
-    }
-    
-    public void setWeight(int weight) {
-        this.weight = weight;
     }
     
     public static boolean isGreen(Apple apple) {
