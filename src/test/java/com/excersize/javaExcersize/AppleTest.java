@@ -45,18 +45,12 @@ class AppleTest {
     }
     
     @Test
-    void should_get_green_apples_by_passing_function() {
-        List<Apple> greenApples = filterApples(inventory, Apple::isGreen);
-        
+    void should_get_green_apples_by_Behavioral_parameterization() {
+        List<Apple> greenApples = myFilterApples(inventory, Apple::isGreen);
+    
         assertEquals(9, greenApples.size());
     }
-    
-    @Test
-    void should_get_heavy_apples_by_passing_function() {
-        List<Apple> heavyApples = filterApples(inventory, Apple::isHeavy);
-        
-        assertEquals(7, heavyApples.size());
-    }
+    // todo 编写新的筛选
     
     @Test
     void should_get_green_apples_by_lambda() {
@@ -68,6 +62,20 @@ class AppleTest {
     @Test
     void should_get_heavy_apples_by_lambda() {
         List<Apple> heavyApples = filterApples(inventory, (Apple a) -> a.getWeight() > 100);
+        
+        assertEquals(7, heavyApples.size());
+    }
+    
+    @Test
+    void should_get_green_apples_by_method_reference() {
+        List<Apple> greenApples = filterApples(inventory, Apple::isGreen);
+        
+        assertEquals(9, greenApples.size());
+    }
+    
+    @Test
+    void should_get_heavy_apples_by_method_reference() {
+        List<Apple> heavyApples = filterApples(inventory, Apple::isHeavy);
         
         assertEquals(7, heavyApples.size());
     }
@@ -147,6 +155,16 @@ class AppleTest {
         List<Apple> result = new ArrayList<>();
         for (Apple apple : inventory) {
             if (apple.getWeight() > 100) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+    
+    private List<Apple> myFilterApples(List<Apple> inventory, ApplePredicate predicate) {
+        List<Apple> result = new ArrayList<>();
+        for (Apple apple : inventory) {
+            if (predicate.test(apple)) {
                 result.add(apple);
             }
         }
